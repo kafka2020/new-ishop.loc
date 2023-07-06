@@ -41,7 +41,12 @@ class Router
 
             $controller = 'app\controllers\\' . self::$route['admin_prefix'] . self::$route['controller'] . 'Controller';
             if (class_exists($controller)) {
+
+                /** @var Controller $controllerObject */
                 $controllerObject = new $controller(self::$route);
+
+                $controllerObject->getModel();
+
                 $actoin = self::lowerCamelCase(self::$route['action'] . 'Action');
                 if (method_exists($controllerObject, $actoin)) {
                     $controllerObject->$actoin();
