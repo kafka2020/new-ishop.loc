@@ -50,6 +50,7 @@ class Router
                 $actoin = self::lowerCamelCase(self::$route['action'] . 'Action');
                 if (method_exists($controllerObject, $actoin)) {
                     $controllerObject->$actoin();
+                    $controllerObject->getView();
                 } else {
                     throw new \Exception("Метод {$controller}::{$actoin} не найден", 404);
                 }
